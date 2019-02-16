@@ -1,4 +1,4 @@
-FROM python:3.7.2-stretch
+FROM openjdk:11.0.2-jre-stretch
 
 VOLUME /usr/src/playground
 
@@ -20,11 +20,10 @@ COPY ./.vimrc /home/playground/.vimrc
 RUN chown playground:playground /home/playground/.bashrc
 RUN chown playground:playground /home/playground/.vimrc
 
-RUN pip install boto3
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 COPY ./.bashrc /root/.bashrc
 
-VOLUME /home/playground/.aws
 WORKDIR /usr/src/playground
 
 USER playground
