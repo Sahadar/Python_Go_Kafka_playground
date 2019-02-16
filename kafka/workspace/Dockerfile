@@ -17,6 +17,8 @@ RUN adduser playground sudo
 
 COPY ./.bashrc /home/playground/.bashrc
 COPY ./.vimrc /home/playground/.vimrc
+COPY ./container_run.sh /run.sh
+
 RUN chown playground:playground /home/playground/.bashrc
 RUN chown playground:playground /home/playground/.vimrc
 
@@ -27,4 +29,4 @@ COPY ./.bashrc /root/.bashrc
 WORKDIR /usr/src/playground
 
 USER playground
-# CMD ["/run.sh"]
+CMD ["/run.sh"]
