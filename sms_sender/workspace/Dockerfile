@@ -23,7 +23,7 @@ RUN chown playground:playground /home/playground/.vimrc
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 RUN pip install boto3 \
-	pip install kafka-python
+	&& pip install kafka-python
 
 COPY ./.bashrc /root/.bashrc
 
