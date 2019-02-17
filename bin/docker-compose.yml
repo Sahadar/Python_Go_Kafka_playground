@@ -15,8 +15,6 @@ services:
         volumes:
             - ~/.aws:/home/playground/.aws
             - ../notificator:/usr/src/playground
-        # ports:
-        #     - "8081:8081"
         depends_on:
             - playground-kafka
         links:
@@ -33,6 +31,8 @@ services:
     playground-webpage:
         build: ../webpage/workspace/
         container_name: playground-webpage
+        ports:
+            - "80:80"
         volumes:
             - ../webpage:/usr/src/playground
         depends_on:

@@ -11,7 +11,7 @@ RUN apt-get update \
 	&& apt-get clean all
 
 ENV TERM xterm
-ENV VENV /usr/src/playground/project/env
+ENV VENV /usr/src/playground/env
 
 RUN adduser playground -u 1000 -home /home/playground --shell /bin/bash --disabled-password --gecos ""
 RUN adduser playground sudo
@@ -22,9 +22,6 @@ RUN chown playground:playground /home/playground/.bashrc
 RUN chown playground:playground /home/playground/.vimrc
 
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-
-RUN pip install kafka-python \
-	&& pip install cookiecutter
 
 COPY ./.bashrc /root/.bashrc
 
