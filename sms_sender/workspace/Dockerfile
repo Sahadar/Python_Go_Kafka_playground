@@ -20,6 +20,8 @@ COPY ./.vimrc /home/playground/.vimrc
 RUN chown playground:playground /home/playground/.bashrc
 RUN chown playground:playground /home/playground/.vimrc
 
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
 RUN pip install boto3
 
 COPY ./.bashrc /root/.bashrc

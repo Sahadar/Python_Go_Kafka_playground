@@ -1,0 +1,23 @@
+version: '2'
+services:
+    playground-kafka:
+        build: ../kafka/workspace/
+        container_name: playground-kafka
+        expose:
+            - "9092"
+            - "2888"
+            - "3888"
+        volumes:
+            - ../kafka/:/usr/src/playground
+    playground-sms:
+        build: ../sms_sender/workspace/
+        container_name: playground-sms
+        volumes:
+            - ~/.aws:/home/playground/.aws
+            - ../sms_sender:/usr/src/playground
+        # ports:
+        #     - "8081:8081"
+        depends_on:
+            - playground-kafka
+        links:
+            - "playground-kafka:kafka"
