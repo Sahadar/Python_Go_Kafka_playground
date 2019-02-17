@@ -9,14 +9,32 @@ services:
             - "3888"
         volumes:
             - ../kafka/:/usr/src/playground
-    playground-sms:
-        build: ../sms_sender/workspace/
-        container_name: playground-sms
+    playground-notificator:
+        build: ../notificator/workspace/
+        container_name: playground-notificator
         volumes:
             - ~/.aws:/home/playground/.aws
-            - ../sms_sender:/usr/src/playground
+            - ../notificator:/usr/src/playground
         # ports:
         #     - "8081:8081"
+        depends_on:
+            - playground-kafka
+        links:
+            - "playground-kafka:kafka"
+    playground-validator:
+        build: ../url_validator/workspace/
+        container_name: playground-validator
+        volumes:
+            - ../url_validator:/usr/src/playground
+        depends_on:
+            - playground-kafka
+        links:
+            - "playground-kafka:kafka"
+    playground-webpage:
+        build: ../webpage/workspace/
+        container_name: playground-webpage
+        volumes:
+            - ../webpage:/usr/src/playground
         depends_on:
             - playground-kafka
         links:

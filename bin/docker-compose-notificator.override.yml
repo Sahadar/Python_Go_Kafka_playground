@@ -1,0 +1,7 @@
+version: '2'
+services:
+    playground-notificator:
+        stdin_open: true
+        tty: true
+        # just to have pid 1 blocked
+        command: bash
