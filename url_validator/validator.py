@@ -29,14 +29,12 @@ if __name__ == '__main__':
                 print('web site exists')
 
                 producer.send('valid_urls', value=str.encode(domain))
-                producer.flush()
             else:
                 print('Web site does not exist')
 
                 producer.send('invalid_urls', value=str.encode(domain))
-                producer.flush()
         except requests.exceptions.ConnectionError:
             print('Web site does not exist')
-
             producer.send('invalid_urls', value=str.encode(domain))
-            producer.flush()
+
+        producer.flush()
