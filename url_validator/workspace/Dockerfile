@@ -16,19 +16,20 @@ RUN adduser playground -u 1000 -home /home/playground --shell /bin/bash --disabl
 RUN adduser playground sudo
 
 COPY ./.bashrc /home/playground/.bashrc
+COPY ./container_run.sh /run.sh
 COPY ./.vimrc /home/playground/.vimrc
+
 RUN chown playground:playground /home/playground/.bashrc
 RUN chown playground:playground /home/playground/.vimrc
 
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
-RUN pip install boto3 \
-	&& pip install kafka-python
+RUN pip install kafka-python \
+	&& pip install requests
 
 COPY ./.bashrc /root/.bashrc
 
-VOLUME /home/playground/.aws
 WORKDIR /usr/src/playground
 
 USER playground
-# CMD ["/run.sh"]
+CMD ["/run.sh"]

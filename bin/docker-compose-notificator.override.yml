@@ -5,3 +5,7 @@ services:
         tty: true
         # just to have pid 1 blocked
         command: bash
+        depends_on:
+            - playground-kafka
+            - playground-webpage
+            - playground-validator
