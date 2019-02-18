@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /usr/src/playground/kafka_2.11-2.1.0
+cd /usr/src/playground/confluent-5.1.1
 
-bin/zookeeper-server-start.sh -daemon config/zookeeper.properties
-bin/kafka-server-start.sh config/server.properties
+bin/zookeeper-server-start -daemon etc/kafka/zookeeper.properties
+bin/kafka-server-start etc/kafka/server.properties
