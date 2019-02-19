@@ -1,4 +1,4 @@
-FROM openjdk:11.0.2-jre-stretch
+FROM openjdk:8-jre-stretch
 
 VOLUME /usr/src/playground
 
@@ -11,6 +11,7 @@ RUN apt-get update \
 	&& apt-get clean all
 
 ENV TERM xterm
+ENV PATH /usr/src/playground/confluent-5.1.1/bin:$PATH
 
 RUN adduser playground -u 1000 -home /home/playground --shell /bin/bash --disabled-password --gecos ""
 RUN adduser playground sudo
