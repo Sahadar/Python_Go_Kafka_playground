@@ -4,7 +4,7 @@ export USERID="$(id -u)"
 export GROUPID="$(id -g)"
 export TIMEZONE="$(cat /etc/timezone)"
 
-SCRIPTPATH="$PWD/$(dirname $0)"
+SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 
 docker build -t playground-workspace-kafka "$SCRIPTPATH/"
 docker stop playground-kafka
