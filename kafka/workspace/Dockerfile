@@ -12,6 +12,7 @@ RUN apt-get update \
 
 ENV TERM xterm
 ENV PATH /usr/src/playground/confluent-5.1.1/bin:$PATH
+ENV PATH /usr/src/playground/confluent-hub/bin:$PATH
 
 RUN adduser playground -u 1000 -home /home/playground --shell /bin/bash --disabled-password --gecos ""
 RUN adduser playground sudo
